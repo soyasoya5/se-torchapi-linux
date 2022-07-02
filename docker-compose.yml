@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  se-torchapi-linux:
+    image: soyasoya5/se-torchapi-linux:latest
+    container_name: se-torchapi
+    restart: unless-stopped
+    volumes:
+      - ./torch-server:/app/torch-server
+    ports:
+     - "27016:27016/udp"
+     - "5900:5900"
