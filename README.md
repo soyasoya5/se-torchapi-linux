@@ -28,11 +28,12 @@ Couldn't download mods and plugins with the dockerized [Keen dedicated server](h
 
 ## Notes
 ---
+- SSH to server with the option `-L 5900:127.0.0.1:5900` to be able to access VNC through your localhost
 - May have to restart TorchAPI after creating a new instance for it to show up in the GUI
 - Attach to the container's CLI by running this command: `docker exec -it se-torchapi /bin/bash`
 - Use `htop` or `killall Torch.Server.exe` to close the windows
 - File browser can be displayed by running `winefile` in the container's CLI
-- The open `winefile` user id is 1000
+- The already opened file browser's user id is 1000
 
 
 ## Credits & Acknowledgements
