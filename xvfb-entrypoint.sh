@@ -13,5 +13,7 @@ runuser -u wine -- bash -c 'x11vnc -display WAIT:99 -forever -autoport 5900 -aut
 echo "Waiting 5 seconds for X server to initialize..."
 sleep 5
 
+runuser -u wine -- bash -c 'DISPLAY=:99 openbox &'
+
 # Open up file browser
 runuser -u wine -- bash -c 'DISPLAY=":99" winefile'
