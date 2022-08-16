@@ -2,7 +2,7 @@ FROM mmmaxwwwell/wine6:latest
 
 RUN apt update --allow-releaseinfo-change \
     && DEBIAN_FRONTEND="noninteractive" \
-    apt install -y procps htop winbind x11vnc net-tools \
+    apt install -y procps htop winbind x11vnc net-tools openbox \
     && apt autoclean \
     && apt autoremove -y
 
