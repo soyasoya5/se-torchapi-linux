@@ -16,9 +16,9 @@ Couldn't download mods and plugins with the dockerized [Keen dedicated server](h
 ## Features
 ---
 - **Unsecured VNC access (Recommend to access through SSH port forwarding only)**
-- No DE/WM for slim image, don't need one anyways
 - Wine 6
 - Easy access to World data for manual backups and editing
+- Openbox WM
 
 ## Usage
 ---
@@ -39,3 +39,4 @@ Couldn't download mods and plugins with the dockerized [Keen dedicated server](h
 ## Credits & Acknowledgements
 ---
 - [mmmaxwwwell](https://github.com/mmmaxwwwell) for base wine image & winetricks script
+- [jeppevinkel](https://github.com/jeppevinkel)
