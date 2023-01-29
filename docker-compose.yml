@@ -2,7 +2,9 @@ version: '3'
 
 services:
   se-torchapi-linux:
-    image: soyasoya5/se-torchapi-linux:latest
+    # image: soyasoya5/se-torchapi-linux:latest
+    build:
+      dockerfile: .
     container_name: se-torchapi
     restart: unless-stopped
     volumes:

@@ -1,0 +1,12 @@
+# Docker build related
+torch-server*
+
+# Docker orchestration related
+docker-compose.yaml
+start
+stop
+
+# Random shit in repo
+images
+LICENSE
+README.md
