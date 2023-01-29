@@ -27,7 +27,13 @@ function setupWineVNC(){
   runUser "winefile"
 }
 
+function setupTorchAPIServer() {
+  # Run with absolute path-reference from inside of docker container
+  runUser "wine z:/app/torch-server/Torch.Server.exe"
+}
+
 function main(){
+  setupTorchAPIServer &
   setupWineVNC
 }
 
