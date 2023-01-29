@@ -19,4 +19,3 @@ COPY ./xvfb-entrypoint.sh /
 RUN chmod +x /xvfb-entrypoint.sh
 
 ENTRYPOINT ["sh", "/xvfb-entrypoint.sh"]
-

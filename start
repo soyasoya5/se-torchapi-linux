@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/usr/bin/env bash
 
 if [ ! -d ./torch-server ]; then
   wget https://build.torchapi.com/job/Torch/job/master/lastSuccessfulBuild/artifact/bin/torch-server.zip && unzip -d torch-server torch-server.zip
