@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-if [ ! -d ./torch-server ]; then
-  wget https://build.torchapi.com/job/Torch/job/master/lastSuccessfulBuild/artifact/bin/torch-server.zip && unzip -d torch-server torch-server.zip
-fi
+[[ ! -d ./torch-server ]] && \
+  wget https://build.torchapi.com/job/Torch/job/master/lastSuccessfulBuild/artifact/bin/torch-server.zip \
+  && unzip -d torch-server torch-server.zip
 
 
-if [ "$(stat -c '%u' torch-server)" != "1000" ]; then
-    echo "Setting owner of torch-server to UID 1000"
-    sudo chown -R 1000:1000 torch-server
-fi
+[[ "$(stat -c '%u' torch-server)" != "1000" ]] && (
+  echo "Setting owner of torch-server to UID 1000"
+  sudo chown -R 1000:1000 torch-server
+)
 
 docker-compose up -d && docker-compose logs -f

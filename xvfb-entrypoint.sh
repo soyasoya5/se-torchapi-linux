@@ -11,9 +11,7 @@ function runUser(){
 }
 
 function setupWineVNC(){
-  if [ ! -f /app/.Xauthority ]; then
-    runUser "touch /app/{x11vnc.log,.Xauthority}"
-  fi
+  [[ ! -f /app/.Xauthority ]] && runUser "touch /app/{.Xauthority,x11vnc.log}"
 
   runUser "Xvfb ${DISPLAY} -screen 0 1280x1024x24 -ac -br -auth /app/.Xauthority &"
   runUser "x11vnc -display WAIT${DISPLAY} -forever -autoport 5900 -auth /app/.Xauthority -nopw -o /app/x11vnc.log -bg &"
