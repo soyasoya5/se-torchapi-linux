@@ -7,7 +7,7 @@
 
 [[ "$(stat -c '%u' torch-server)" != "1000" ]] && (
   echo "Setting owner of torch-server to UID 1000"
-  sudo chown -R 1000:1000 torch-server
+  chown -R 1000:1000 torch-server
 )
 
 docker-compose up -d && docker-compose logs -f
