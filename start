@@ -10,4 +10,4 @@ if [ "$(stat -c '%u' torch-server)" != "1000" ]; then
     sudo chown -R 1000:1000 torch-server
 fi
 
-sudo docker-compose up -d && sudo docker-compose logs -f
+docker-compose up -d && docker-compose logs -f
