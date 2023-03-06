@@ -1,19 +1,38 @@
 #! /bin/sh
 
-export WINEARCH=win64
-export WINEPREFIX=/wineprefix
-export DISPLAY=":99"
+function runUser(){
+  export WINEARCH=win64
+  export DISPLAY=":99"
+  export WINEPREFIX=/wineprefix
+  runuser --user wine \
+    --whitelist-environment DISPLAY,WINEARCH,WINEPREFIX \
+    --shell bash \
+    -- "${1}"
+}
 
-if [ ! -f /app/.Xauthority ]; then
-  runuser -u wine -- touch /app/x11vnc.log /app/.Xauthority
-fi
-runuser -u wine -- bash -c 'Xvfb :99 -screen 0 1280x1024x24 -ac -br -auth /app/.Xauthority &'
-runuser -u wine -- bash -c 'x11vnc -display WAIT:99 -forever -autoport 5900 -auth /app/.Xauthority -nopw -o /app/x11vnc.log -bg &'
+function setupWineVNC(){
+  [[ ! -f /app/.Xauthority ]] && runUser "touch /app/{.Xauthority,x11vnc.log}"
 
-echo "Waiting 5 seconds for X server to initialize..."
-sleep 5
+  runUser "Xvfb ${DISPLAY} -screen 0 1280x1024x24 -ac -br -auth /app/.Xauthority &"
+  runUser "x11vnc -display WAIT${DISPLAY} -forever -autoport 5900 -auth /app/.Xauthority -nopw -o /app/x11vnc.log -bg &"
 
-runuser -u wine -- bash -c 'DISPLAY=:99 openbox &'
+  echo "Waiting 5 seconds for X server to initialize..."
+  sleep 5
 
-# Open up file browser
-runuser -u wine -- bash -c 'DISPLAY=":99" winefile'
+  runUser "openbox &"
+
+  # Open up file browser
+  runUser "winefile"
+}
+
+function setupTorchAPIServer() {
+  # Run with absolute path-reference from inside of docker container
+  runUser "wine z:/app/torch-server/Torch.Server.exe"
+}
+
+function main(){
+  setupTorchAPIServer &
+  setupWineVNC
+}
+
+main
